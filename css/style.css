@@ -1,0 +1,30 @@
+#map {
+  height: 400px;
+  width: 100%;
+  border: 6px solid #dedede;
+  margin: 0em auto;
+}
+#results {
+  z-index:9999;
+  position:absolute;
+  width:200px;
+  height:388px;
+  background: rgba(255,255,255,0.8);
+  top:0;
+  bottom:0;
+  right:0px;
+  color:#000000;
+  overflow-y:scroll;
+  font-size:.82em;
+  padding:12px 5px;
+  line-height:1.333;
+}
+.school {
+  color:lightblue;
+}
+.restaurant, .bar, .food, .store {
+  color:orange;
+}
+.park {
+  color:green;
+}

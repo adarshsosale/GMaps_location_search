@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false">
+    </script>
+
+    <title>
+    </title>
+</head>
+
+<body>
+    <div>
+        <h3>Enter an adress and press the button</h3>
+        <input id="address" placeholder="Enter address here" type="text">
+        <button id="btn">Get LatLong</button>
+
+        <div>
+            <p>Latitude: <input id="latitude" readonly type="text"></p>
+
+
+            <p>Longitude: <input id="longitude" readonly type="text"></p>
+        </div>
+    </div>
+    <a href="neighbourhood.html"><button>Continue</button></a>
+    <script>
+    /* This showResult function is used as the callback function*/
+
+    function showResult(result) {
+        var latval = result.geometry.location.lat();
+        var lngval = result.geometry.location.lng();
+        document.getElementById('latitude').value = latval;
+        document.getElementById('longitude').value = lngval;
+        localStorage.setItem("lat", latval);
+        localStorage.setItem("long", lngval);
+    }
+
+    function getLatitudeLongitude(callback, address) {
+        // If adress is not supplied, use default value 'Yelahanka, Bangalore, India'
+        address = address || 'Yelahanka, Bangalore, India';
+        // Initialize the Geocoder
+        geocoder = new google.maps.Geocoder();
+        if (geocoder) {
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    callback(results[0]);
+                }
+            });
+        }
+    }
+
+    var button = document.getElementById('btn');
+
+    button.addEventListener("click", function () {
+        var address = document.getElementById('address').value;
+        getLatitudeLongitude(showResult, address)
+    });
+
+
+    </script>
+</body>
+</html>
