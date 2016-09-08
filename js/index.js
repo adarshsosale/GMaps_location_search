@@ -72,7 +72,6 @@ function initialize() {
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
 
-
 }
 
 
@@ -118,10 +117,29 @@ function createMarker(place) {
 
   totalSchool = $('.school').size();
   $('#school').text('Schools: ' + totalSchool);
-  totalFood = $('.restaurants').size();
-  $('#food').text('Restaurants: ' + totalFood);
+
+  totalRestaurants = $('.restaurant').size();
+  totalCafe = $('.cafe').size();
+  totalFood = $('.food').size();
+  totalMealDeliery = $('.meal_delivery').size();
+  totalMealTakeaway = $('.meal_takeaway').size();
+
+
+  AllFood = totalRestaurants + totalCafe + totalFood + totalMealDeliery + totalMealTakeaway;
+
+  $('#food').text('Restaurants: ' + AllFood);
   totalParks = $('.park').size();
   $('#park').text('Parks: ' + totalParks);
+
+
+  totalPubs = $('.liquor_store').size();
+  totalNightClubs = $('.night_club').size();
+  allLifestyle = totalPubs + totalNightClubs;
+  $('#lifestyle').text('Lifestyle: ' + allLifestyle);
+
+
+  totalAll = totalSchool + totalFood + totalParks;
+  $('#total').text('Score: ' + totalAll);
 
   google.maps.event.addListener(marker, 'click', function () {
     infowindow.setContent(place.name);
